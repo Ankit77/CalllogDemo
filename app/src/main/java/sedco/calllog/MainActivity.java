@@ -22,8 +22,20 @@ public class MainActivity extends AppCompatActivity {
         if (calllogList != null && calllogList.size() > 0) {
             for (int i = 0; i < calllogList.size(); i++) {
                 if (calllogList.get(i).getDircode() == CallLog.Calls.INCOMING_TYPE) {
-                    String str = "Phone No - " + calllogList.get(i).getPhnNumber() + "\nDuration - " + calllogList.get(i).getCallDuration() + "\n Datetime - " + calllogList.get(i).getCallDate();
+                    if (calllogList.get(i).getCallDuration().equalsIgnoreCase("00:00:00")) {
+                        String str = "Phone No - " + calllogList.get(i).getPhnNumber() + "\nDuration - " + calllogList.get(i).getCallDuration() + "\n Datetime - " + calllogList.get(i).getCallDate() + "\n Type - InComing \n Status - Rejected";
+                        textView.setText(str);
+                    } else {
+                        String str = "Phone No - " + calllogList.get(i).getPhnNumber() + "\nDuration - " + calllogList.get(i).getCallDuration() + "\n Datetime - " + calllogList.get(i).getCallDate() + "\n" +
+                                " Type - InComing \n Status - Accepted";
+                        textView.setText(str);
+                    }
+                    break;
+                } else if (calllogList.get(i).getDircode() == CallLog.Calls.OUTGOING_TYPE) {
+
+                    String str = "Phone No - " + calllogList.get(i).getPhnNumber() + "\nDuration - " + calllogList.get(i).getCallDuration() + "\n Datetime - " + calllogList.get(i).getCallDate() + "\n Type - OutGoing";
                     textView.setText(str);
+
                     break;
                 }
             }
